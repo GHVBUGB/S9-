@@ -1,0 +1,657 @@
+{
+  "description": "教师端数据接口字段定义 - LessonRecord完整JSON格式",
+  "version": "1.0",
+  "lessonRecord": {
+    "description": "课程记录数据结构（教师端编辑和存储）",
+    "fields": {
+      "id": {
+        "type": "string",
+        "required": true,
+        "description": "课程ID",
+        "example": "lesson-1001-001"
+      },
+      "date": {
+        "type": "string",
+        "required": true,
+        "description": "日期",
+        "example": "2023.10.24",
+        "format": "YYYY.MM.DD"
+      },
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "课程标题",
+        "example": "苏珊和她的猫"
+      },
+      "unit": {
+        "type": "string",
+        "required": true,
+        "description": "单元",
+        "example": "Unit 1: My Pet"
+      },
+      "articlesCount": {
+        "type": "number",
+        "required": true,
+        "description": "阅读篇数",
+        "example": 2
+      },
+      "wordsRead": {
+        "type": "number",
+        "required": true,
+        "description": "阅读字数",
+        "example": 450
+      },
+      "focusDuration": {
+        "type": "number",
+        "required": true,
+        "description": "专注时长（分钟）",
+        "example": 18
+      },
+      "accuracy": {
+        "type": "number",
+        "required": true,
+        "description": "正确率（百分比）",
+        "example": 85,
+        "min": 0,
+        "max": 100
+      },
+      "abilityScores": {
+        "type": "object",
+        "required": true,
+        "description": "能力分数",
+        "fields": {
+          "precisePositioning": {
+            "type": "number",
+            "required": true,
+            "description": "精准定位分数",
+            "example": 85,
+            "min": 0,
+            "max": 100
+          },
+          "logicalDeduction": {
+            "type": "number",
+            "required": true,
+            "description": "逻辑推演分数",
+            "example": 70,
+            "min": 0,
+            "max": 100
+          },
+          "macroStructure": {
+            "type": "number",
+            "required": true,
+            "description": "宏观结构分数",
+            "example": 60,
+            "min": 0,
+            "max": 100
+          },
+          "contextualDecoding": {
+            "type": "number",
+            "required": true,
+            "description": "语境解码分数",
+            "example": 90,
+            "min": 0,
+            "max": 100
+          },
+          "strategyExecution": {
+            "type": "number",
+            "required": true,
+            "description": "策略执行分数",
+            "example": 75,
+            "min": 0,
+            "max": 100
+          }
+        }
+      },
+      "subjectPassport": {
+        "type": "object",
+        "required": false,
+        "description": "主题护照数据",
+        "fields": {
+          "coverImage": {
+            "type": "string",
+            "required": false,
+            "description": "封面图片URL",
+            "example": "https://picsum.photos/600/340"
+          },
+          "articleTitle": {
+            "type": "string",
+            "required": true,
+            "description": "文章标题",
+            "example": "Susan and Her Cat"
+          },
+          "unitProgress": {
+            "type": "string",
+            "required": true,
+            "description": "单元进度",
+            "example": "1/4"
+          },
+          "unitTotal": {
+            "type": "number",
+            "required": true,
+            "description": "单元总数",
+            "example": 4
+          },
+          "theme": {
+            "type": "string",
+            "required": true,
+            "description": "主题",
+            "example": "人与自然"
+          },
+          "genre": {
+            "type": "string",
+            "required": true,
+            "description": "体裁",
+            "example": "记叙文"
+          }
+        }
+      },
+      "skillCards": {
+        "type": "array",
+        "required": false,
+        "description": "技能卡列表",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": {
+              "type": "string",
+              "required": true,
+              "example": "GPS定位卡"
+            },
+            "level": {
+              "type": "string",
+              "required": true,
+              "example": "LV.3"
+            },
+            "progress": {
+              "type": "number",
+              "required": true,
+              "example": 65
+            },
+            "total": {
+              "type": "number",
+              "required": true,
+              "example": 100
+            },
+            "status": {
+              "type": "string",
+              "required": true,
+              "enum": ["active", "locked"],
+              "example": "active"
+            },
+            "desc": {
+              "type": "string",
+              "required": true,
+              "example": "精准定位"
+            },
+            "fullDesc": {
+              "type": "string",
+              "required": false,
+              "example": "GPS定位卡帮助你快速定位文章中的关键细节信息，精准找到答案所在位置。"
+            },
+            "questionTypes": {
+              "type": "array",
+              "required": false,
+              "items": {
+                "type": "string"
+              },
+              "example": ["细节理解题", "信息定位题", "事实查找题"]
+            },
+            "tips": {
+              "type": "string",
+              "required": false,
+              "example": "阅读题目后，先在脑海中标记关键词，然后在文章中快速扫描定位。"
+            },
+            "stats": {
+              "type": "object",
+              "required": false,
+              "fields": {
+                "level": {
+                  "type": "number",
+                  "required": true,
+                  "example": 3
+                },
+                "exp": {
+                  "type": "number",
+                  "required": true,
+                  "example": 650
+                },
+                "usage": {
+                  "type": "number",
+                  "required": true,
+                  "example": 12
+                }
+              }
+            },
+            "unlockCondition": {
+              "type": "string",
+              "required": false,
+              "example": "完成更多相关题型训练即可解锁此技能卡"
+            }
+          }
+        }
+      },
+      "vocabulary": {
+        "type": "array",
+        "required": false,
+        "description": "生词列表",
+        "items": {
+          "type": "object",
+          "fields": {
+            "word": {
+              "type": "string",
+              "required": true,
+              "example": "scarf"
+            },
+            "partOfSpeech": {
+              "type": "string",
+              "required": true,
+              "example": "n. 围巾"
+            },
+            "meaning": {
+              "type": "string",
+              "required": true,
+              "example": "围巾"
+            },
+            "status": {
+              "type": "string",
+              "required": true,
+              "enum": ["mastered", "review"],
+              "example": "mastered"
+            },
+            "context": {
+              "type": "string",
+              "required": true,
+              "example": "Susan bought a red scarf at the store."
+            },
+            "sourceTitle": {
+              "type": "string",
+              "required": false,
+              "example": "The Fashion Story"
+            },
+            "reviewCount": {
+              "type": "number",
+              "required": false,
+              "example": 2
+            }
+          }
+        }
+      },
+      "sentences": {
+        "type": "array",
+        "required": false,
+        "description": "难句列表",
+        "items": {
+          "type": "object",
+          "fields": {
+            "text": {
+              "type": "string",
+              "required": true,
+              "example": "The rapid transition to renewable energy sources is not just an environmental necessity but an economic opportunity that could reshape global markets."
+            },
+            "difficulty": {
+              "type": "string",
+              "required": true,
+              "enum": ["easy", "medium", "hard"],
+              "example": "hard"
+            },
+            "translation": {
+              "type": "string",
+              "required": true,
+              "example": "向可再生能源的快速转型不仅是环境必需，也是一个可能重塑全球市场的经济机遇。"
+            },
+            "analysis": {
+              "type": "string",
+              "required": true,
+              "example": "这是一个并列结构的复杂句。主句由\"not just...but...\"连接两个并列成分。"
+            },
+            "keyPoints": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "string"
+              },
+              "example": ["not just...but... 并列结构", "定语从句修饰 opportunity"]
+            },
+            "sourceTitle": {
+              "type": "string",
+              "required": false,
+              "example": "Green Energy Future"
+            }
+          }
+        }
+      },
+      "trends": {
+        "type": "object",
+        "required": false,
+        "description": "趋势数据",
+        "fields": {
+          "guessRate": {
+            "type": "object",
+            "required": true,
+            "description": "盲猜率趋势",
+            "fields": {
+              "current": {
+                "type": "number",
+                "required": true,
+                "description": "当前盲猜率（百分比）",
+                "example": 5
+              },
+              "change": {
+                "type": "number",
+                "required": true,
+                "description": "变化率（百分比）",
+                "example": -58.3
+              },
+              "data": {
+                "type": "array",
+                "required": true,
+                "description": "每日数据",
+                "items": {
+                  "type": "object",
+                  "fields": {
+                    "day": {
+                      "type": "string",
+                      "required": true,
+                      "example": "周二"
+                    },
+                    "value": {
+                      "type": "number",
+                      "required": true,
+                      "example": 40
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "periodComparison": {
+        "type": "object",
+        "required": false,
+        "description": "周期对比数据",
+        "fields": {
+          "week": {
+            "type": "array",
+            "required": true,
+            "description": "本周与上周对比",
+            "items": {
+              "type": "object",
+              "fields": {
+                "label": {
+                  "type": "string",
+                  "required": true,
+                  "example": "阅读篇数"
+                },
+                "value": {
+                  "type": "string|number",
+                  "required": true,
+                  "example": 14
+                },
+                "unit": {
+                  "type": "string",
+                  "required": true,
+                  "example": "篇"
+                },
+                "change": {
+                  "type": "number",
+                  "required": true,
+                  "example": 40.0
+                },
+                "prevValue": {
+                  "type": "string|number",
+                  "required": true,
+                  "example": 10
+                },
+                "diff": {
+                  "type": "number",
+                  "required": true,
+                  "example": 4
+                },
+                "reverseColor": {
+                  "type": "boolean",
+                  "required": false,
+                  "example": true
+                }
+              }
+            }
+          },
+          "month": {
+            "type": "array",
+            "required": true,
+            "description": "本月与上月对比",
+            "items": {
+              "type": "object",
+              "fields": {
+                "label": {
+                  "type": "string",
+                  "required": true,
+                  "example": "阅读篇数"
+                },
+                "value": {
+                  "type": "string|number",
+                  "required": true,
+                  "example": 56
+                },
+                "unit": {
+                  "type": "string",
+                  "required": true,
+                  "example": "篇"
+                },
+                "change": {
+                  "type": "number",
+                  "required": true,
+                  "example": 33.3
+                },
+                "prevValue": {
+                  "type": "string|number",
+                  "required": true,
+                  "example": 42
+                },
+                "diff": {
+                  "type": "number",
+                  "required": true,
+                  "example": 14
+                },
+                "reverseColor": {
+                  "type": "boolean",
+                  "required": false,
+                  "example": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "trainingGoals": {
+        "type": "array",
+        "required": false,
+        "description": "今日训练目标",
+        "items": {
+          "type": "object",
+          "fields": {
+            "type": {
+              "type": "string",
+              "required": true,
+              "description": "题型名称",
+              "example": "细节理解题"
+            },
+            "count": {
+              "type": "number",
+              "required": true,
+              "description": "目标数量",
+              "example": 2
+            },
+            "color": {
+              "type": "string",
+              "required": true,
+              "description": "颜色主题",
+              "enum": ["blue", "purple", "green", "orange"],
+              "example": "blue"
+            }
+          }
+        }
+      }
+    }
+  },
+  "studentReport": {
+    "description": "完整的学生报告数据结构（包含学生信息和课程记录）",
+    "fields": {
+      "student": {
+        "type": "object",
+        "required": true,
+        "description": "学生基本信息",
+        "fields": {
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "学生ID",
+            "example": "1001"
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "description": "学生姓名",
+            "example": "李明"
+          },
+          "level": {
+            "type": "string",
+            "required": false,
+            "description": "学习等级",
+            "example": "S9 进阶阅读计划"
+          }
+        }
+      },
+      "latestLesson": {
+        "type": "object",
+        "required": true,
+        "description": "最新课程记录",
+        "fields": "参考lessonRecord字段定义"
+      },
+      "historyLessons": {
+        "type": "array",
+        "required": true,
+        "description": "历史课程记录列表",
+        "items": {
+          "type": "object",
+          "fields": "参考lessonRecord字段定义"
+        }
+      }
+    }
+  },
+  "example": {
+    "student": {
+      "id": "1001",
+      "name": "李明",
+      "level": "S9 进阶阅读计划"
+    },
+    "latestLesson": {
+      "id": "lesson-1001-001",
+      "date": "2023.10.24",
+      "title": "苏珊和她的猫",
+      "unit": "Unit 1: My Pet",
+      "articlesCount": 2,
+      "wordsRead": 450,
+      "focusDuration": 18,
+      "accuracy": 85,
+      "abilityScores": {
+        "precisePositioning": 85,
+        "logicalDeduction": 70,
+        "macroStructure": 60,
+        "contextualDecoding": 90,
+        "strategyExecution": 75
+      },
+      "subjectPassport": {
+        "coverImage": "https://picsum.photos/600/340",
+        "articleTitle": "Susan and Her Cat",
+        "unitProgress": "1/4",
+        "unitTotal": 4,
+        "theme": "人与自然",
+        "genre": "记叙文"
+      },
+      "skillCards": [
+        {
+          "title": "GPS定位卡",
+          "level": "LV.3",
+          "progress": 65,
+          "total": 100,
+          "status": "active",
+          "desc": "精准定位",
+          "fullDesc": "GPS定位卡帮助你快速定位文章中的关键细节信息，精准找到答案所在位置。",
+          "questionTypes": ["细节理解题", "信息定位题", "事实查找题"],
+          "tips": "阅读题目后，先在脑海中标记关键词，然后在文章中快速扫描定位。",
+          "stats": {
+            "level": 3,
+            "exp": 650,
+            "usage": 12
+          }
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "scarf",
+          "partOfSpeech": "n. 围巾",
+          "meaning": "围巾",
+          "status": "mastered",
+          "context": "Susan bought a red scarf at the store.",
+          "sourceTitle": "The Fashion Story"
+        }
+      ],
+      "sentences": [
+        {
+          "text": "The rapid transition to renewable energy sources is not just an environmental necessity but an economic opportunity that could reshape global markets.",
+          "difficulty": "hard",
+          "translation": "向可再生能源的快速转型不仅是环境必需，也是一个可能重塑全球市场的经济机遇。",
+          "analysis": "这是一个并列结构的复杂句。主句由\"not just...but...\"连接两个并列成分。第一部分强调环境必要性，第二部分通过定语从句\"that could reshape global markets\"进一步说明经济机遇的影响范围。",
+          "keyPoints": ["not just...but... 并列结构", "定语从句修饰 opportunity", "transition to 固定搭配"],
+          "sourceTitle": "Green Energy Future"
+        }
+      ],
+      "trends": {
+        "guessRate": {
+          "current": 5,
+          "change": -58.3,
+          "data": [
+            { "day": "周二", "value": 40 },
+            { "day": "周三", "value": 35 },
+            { "day": "周四", "value": 28 },
+            { "day": "周五", "value": 20 },
+            { "day": "周六", "value": 15 },
+            { "day": "周日", "value": 5 }
+          ]
+        }
+      },
+      "periodComparison": {
+        "week": [
+          {
+            "label": "阅读篇数",
+            "value": 14,
+            "unit": "篇",
+            "change": 40.0,
+            "prevValue": 10,
+            "diff": 4
+          }
+        ],
+        "month": [
+          {
+            "label": "阅读篇数",
+            "value": 56,
+            "unit": "篇",
+            "change": 33.3,
+            "prevValue": 42,
+            "diff": 14
+          }
+        ]
+      },
+      "trainingGoals": [
+        {
+          "type": "细节理解题",
+          "count": 2,
+          "color": "blue"
+        }
+      ]
+    },
+    "historyLessons": []
+  }
+}
+
