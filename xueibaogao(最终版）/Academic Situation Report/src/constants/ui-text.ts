@@ -309,3 +309,6 @@ export const UI_TEXT = {
 // 类型导出，方便类型检查
 export type UITextType = typeof UI_TEXT;
 
+
+
+
